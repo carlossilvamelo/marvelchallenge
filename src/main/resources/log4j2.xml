@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        <Console name="Console" >
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <Console name="RequestLoggerAppender" >
+            <PatternLayout
+                    pattern='%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [{endpoint=%X{endpoint}},{sourceIp=%X{sourceIp}},{requestId=%X{requestId}}] %logger{36} - %msg {"requestParams"=[%X{requestParams}],"responseParam"="%X{responseParam}","requestURI"="%X{requestURI}","httpMethod"="%X{httpMethod}","httpStatus"="%X{httpStatus}","exceptionMessage"="%X{exceptionMessage}","errorCode=%X{errorCode}","messages=%X{messages}","serviceVersion"="%X{serviceVersion}"} %n'/>
+        </Console>
+        <Console name="ServiceLoggerAppender" >
+            <PatternLayout
+                    pattern='%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level [{endpoint=%X{endpoint}},{sourceIp=%X{sourceIp}},{requestId=%X{requestId}}] %logger{36} - %msg%n'/>
+        </Console>
+
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="Console"/>
+        </Root>
+        <logger name="com.executapi.config.ApiInterceptor"
+                level="INFO" additivity="false">
+            <appender-ref ref="RequestLoggerAppender"/>
+        </logger>
+
+        <logger name="com.executapi.usecase"
+                level="DEBUG" additivity="false">
+            <appender-ref ref="ServiceLoggerAppender"/>
+        </logger>
+
+        <logger name="com.executapi.exception"
+                level="DEBUG" additivity="false">
+            <appender-ref ref="ServiceLoggerAppender"/>
+        </logger>
+
+        <logger name="com.executapi.usecase"
+                level="ERROR" additivity="false">
+            <appender-ref ref="ServiceLoggerAppender"/>
+        </logger>
+
+        <logger name="com.executapi.config.ExceptionHandler"
+                level="info" additivity="false">
+            <appender-ref ref="RequestLoggerAppender"/>
+        </logger>
+    </Loggers>
+</Configuration>

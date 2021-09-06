@@ -1,0 +1,19 @@
+api:
+  version: @project.version@
+server:
+  port: 8080
+  servlet:
+    contextPath: /execut
+spring:
+  application:
+    name: execut-api
+  data:
+    mongodb:
+      uri: mongodb+srv://executapi:executmaltic!@cluster0.wr3ps.mongodb.net/test?retryWrites=true&w=majority
+      database: test
+openapi:
+  title: Execut API
+  version: @project.version@
+  description: Execute backend
+messages:
+  global: 'classpath:/messages/global'
