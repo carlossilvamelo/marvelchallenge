@@ -13,12 +13,11 @@ marvel-api:
 api-keys:
   public: ${PUBLIC_KEY}
   private: ${PRIVATE_KEY}
-  ts: ${TS}
 
 openapi:
-  title: Execut API
+  title: Marvel API
   version: @project.version@
-  description: Execute backend
+  description: Marvel API
 messages:
   global: 'classpath:/messages/global'
 
