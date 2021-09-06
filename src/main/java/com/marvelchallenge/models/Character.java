@@ -5,10 +5,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
 public class Character {
     private Integer id;
+    private String name;
+    private String description;
+    private LocalDate modified;
+    private Thumbnail thumbnail;
+    private String resourceURI;
+    private Comics comics;
+    private Series series;
+    private Stories stories;
+    private Events events;
+    private List<Url> urls;
 }
