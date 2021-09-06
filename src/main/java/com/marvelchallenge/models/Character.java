@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @AllArgsConstructor
@@ -15,8 +14,7 @@ import java.util.List;
 public class Character {
     private Integer id;
     private String name;
-    private String description;
-    private LocalDate modified;
+    private String modified;
     private Thumbnail thumbnail;
     private String resourceURI;
     private Comics comics;
