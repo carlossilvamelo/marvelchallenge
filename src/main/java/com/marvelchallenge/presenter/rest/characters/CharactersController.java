@@ -49,7 +49,7 @@ public interface CharactersController {
                             description = "Ordenação por parametro: sort=name,asc.",
                             in = ParameterIn.QUERY),
             })
-    List<Integer> getIds(QueryParams queryParams);
+    List<Integer> getIds();
 
     @Operation(summary = "Consulta lista de projetos",
             tags = "Projects",
@@ -83,7 +83,6 @@ public interface CharactersController {
                             description = "Ordenação por parametro: sort=name,asc.",
                             in = ParameterIn.QUERY),
             })
-    Character getById(@PathVariable("id") Integer id
-            , QueryParams queryParams);
+    Character getById(@PathVariable("id") Integer id);
 
 }

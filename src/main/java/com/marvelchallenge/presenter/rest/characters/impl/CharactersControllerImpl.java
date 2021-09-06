@@ -2,7 +2,6 @@ package com.marvelchallenge.presenter.rest.characters.impl;
 
 import com.marvelchallenge.models.Character;
 import com.marvelchallenge.presenter.rest.characters.CharactersController;
-import com.marvelchallenge.presenter.rest.characters.QueryParams;
 import com.marvelchallenge.usecase.GetCharacterById;
 import com.marvelchallenge.usecase.GetCharactersIds;
 import lombok.RequiredArgsConstructor;
@@ -21,13 +20,15 @@ public class CharactersControllerImpl implements CharactersController {
     private final GetCharacterById getCharacterById;
 
     @GetMapping
-    public List<Integer> getIds(QueryParams queryParams) {
-        return getCharactersIds.execute(queryParams);
+    public List<Integer> getIds() {
+
+        return getCharactersIds.execute();
     }
 
     @GetMapping("/{id}")
-    public Character getById(Integer id, QueryParams queryParams) {
-        return getCharacterById.execute(id, queryParams);
+    public Character getById(Integer id) {
+
+        return getCharacterById.execute(id);
     }
 
 }

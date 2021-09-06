@@ -5,10 +5,10 @@ import com.marvelchallenge.gateway.characters.CharactersGateway;
 import com.marvelchallenge.gateway.dto.MarvelApiResponse;
 import com.marvelchallenge.gateway.dto.ResponseData;
 import com.marvelchallenge.models.Character;
-import com.marvelchallenge.presenter.rest.characters.QueryParams;
 import com.marvelchallenge.usecase.GetCharacterById;
 import com.marvelchallenge.utils.TokenUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,20 +18,25 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GetCharacterByIdImpl implements GetCharacterById {
 
+    @Value("${api-keys.public}")
+    private String publicKey;
+    @Value("${api-keys.private}")
+    private String privateKey;
+
     private final CharactersGateway charactersGateway;
 
     @Override
-    public Character execute(Integer id, QueryParams queryParams) {
+    public Character execute(Integer id) {
         final String timestamp = LocalDateTime.now().toString();
         final String hash = TokenUtils.generateHashBy(
                 timestamp
-                , queryParams.getPrivateKey()
-                , queryParams.getPublicKey()
+                , privateKey
+                , publicKey
         );
 
         MarvelApiResponse<Character> respose = charactersGateway.getById(id
                 , timestamp
-                , queryParams.getPublicKey()
+                , publicKey
                 , hash);
         return validateAndGetExistent(respose);
 
@@ -47,5 +52,4 @@ public class GetCharacterByIdImpl implements GetCharacterById {
                 .findFirst()
                 .orElseThrow(ResourceNotFoundException::new);
     }
-
 }

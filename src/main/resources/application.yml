@@ -1,16 +1,19 @@
 api:
   version: @project.version@
 server:
-  port: 8080
+  port: 8081
   servlet:
-    contextPath: /execut
+    contextPath: /marvel
 spring:
   application:
-    name: execut-api
-  data:
-    mongodb:
-      uri: mongodb+srv://executapi:executmaltic!@cluster0.wr3ps.mongodb.net/test?retryWrites=true&w=majority
-      database: test
+    name: marvel-api
+marvel-api:
+  base-url: https://gateway.marvel.com:443/v1/public
+
+api-keys:
+  public: ${PUBLIC_KEY}
+  private: ${PRIVATE_KEY}
+
 openapi:
   title: Execut API
   version: @project.version@

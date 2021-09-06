@@ -37,11 +37,7 @@ public class ApiInterceptor implements HandlerInterceptor {
                     , request.getMethod()
                     , request.getRequestURI());
             String sourceIp = request.getRemoteAddr();
-            String publicKey = request.getParameter("publicKey");
-            String privateKey = request.getParameter("privateKey");
             String requestId = request.getHeader("request-id");
-            ThreadContext.put(LogKeysEnum.PUBLIC_KEY.getKey(), publicKey);
-            ThreadContext.put(LogKeysEnum.PRIVATE_KEY.getKey(), privateKey);
             ThreadContext.put(LogKeysEnum.API_VERSION.getKey(), apiVersion);
             ThreadContext.put(LogKeysEnum.ENDPOINT.getKey(), endpoint);
             ThreadContext.put(LogKeysEnum.SOURCE_IP.getKey(), sourceIp);
