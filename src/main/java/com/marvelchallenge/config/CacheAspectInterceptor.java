@@ -1,7 +1,7 @@
 package com.marvelchallenge.config;
 
-import com.marvelchallenge.inmemorycache.GetCharactersIdsCache;
-import com.marvelchallenge.usecase.impl.GetCharactersIdsImpl;
+import com.marvelchallenge.config.inmemorycache.GetCharactersIdsCache;
+import com.marvelchallenge.usecase.character.impl.GetCharactersIdsImpl;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -13,7 +13,7 @@ import java.util.List;
 
 @Aspect
 @Component
-public class CacheAspect {
+public class CacheAspectInterceptor {
 
     @Around("execution(* com.marvelchallenge.usecase..*.*(..))")
     public Object cache(ProceedingJoinPoint joinPoint) throws Throwable {

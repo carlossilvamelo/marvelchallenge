@@ -1,6 +1,6 @@
-package com.marvelchallenge;
+package com.marvelchallenge.adapter;
 
-import com.marvelchallenge.presenter.rest.characters.CharacterDTO;
+import com.marvelchallenge.presenter.rest.characters.dtos.CharacterDTO;
 import lombok.experimental.UtilityClass;
 import org.modelmapper.ModelMapper;
 import com.marvelchallenge.models.Character;

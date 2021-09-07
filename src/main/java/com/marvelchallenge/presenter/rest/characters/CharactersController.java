@@ -1,6 +1,7 @@
 package com.marvelchallenge.presenter.rest.characters;
 
 import com.marvelchallenge.config.SwaggerApiInfo;
+import com.marvelchallenge.presenter.rest.characters.dtos.CharacterDTO;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -12,6 +13,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -55,10 +57,10 @@ public interface CharactersController extends SwaggerApiInfo {
             )),
             parameters = {
                     @Parameter(name = "language",
-                            example = "en",
                             description = "Language to translate",
                             in = ParameterIn.QUERY),
             })
-    CharacterDTO getById(@PathVariable("id") Integer id);
+    CharacterDTO getById(@PathVariable("id") Integer id
+            , @RequestParam(name = "language", defaultValue = "en") String lang);
 
 }

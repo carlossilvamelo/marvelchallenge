@@ -1,4 +1,4 @@
-package com.marvelchallenge.usecase;
+package com.marvelchallenge.usecase.character;
 
 import java.util.List;
 

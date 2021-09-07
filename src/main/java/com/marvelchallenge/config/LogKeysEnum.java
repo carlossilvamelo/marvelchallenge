@@ -20,8 +20,7 @@ public enum LogKeysEnum {
     MESSAGES("messages"),
     SERVICE_VERSION("serviceVersion"),
     ERROR_CODE("errorCode"),
-    EXCEPTION_MESSAGE("exceptionMessage"),
-    LATENCY("latency");
+    EXCEPTION_MESSAGE("exceptionMessage");
 
     private final String key;
 }

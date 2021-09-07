@@ -18,29 +18,25 @@
         <Root level="INFO">
             <AppenderRef ref="Console"/>
         </Root>
-        <logger name="com.executapi.config.ApiInterceptor"
+        <logger name="com.marvelchallenge.config.ApiInterceptor"
                 level="INFO" additivity="false">
             <appender-ref ref="RequestLoggerAppender"/>
         </logger>
 
-        <logger name="com.executapi.usecase"
+        <logger name="com.marvelchallenge.usecase"
                 level="DEBUG" additivity="false">
             <appender-ref ref="ServiceLoggerAppender"/>
         </logger>
 
-        <logger name="com.executapi.exception"
+        <logger name="com.marvelchallenge.exception"
                 level="DEBUG" additivity="false">
             <appender-ref ref="ServiceLoggerAppender"/>
         </logger>
 
-        <logger name="com.executapi.usecase"
+        <logger name="com.marvelchallenge.usecase"
                 level="ERROR" additivity="false">
             <appender-ref ref="ServiceLoggerAppender"/>
         </logger>
 
-        <logger name="com.executapi.config.ExceptionHandler"
-                level="info" additivity="false">
-            <appender-ref ref="RequestLoggerAppender"/>
-        </logger>
     </Loggers>
 </Configuration>

@@ -1,5 +1,4 @@
-package com.marvelchallenge.inmemorycache;
-
+package com.marvelchallenge.config.inmemorycache;
 
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.util.CollectionUtils;

@@ -20,14 +20,12 @@ import java.util.Map;
 public class ApiInterceptor implements HandlerInterceptor {
 
     static final String DEFAULT_RESPONSE_LOG_MSG = "API - marvel-api";
-    private Instant now;
 
     @Value("${api.version}")
     private String apiVersion;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        now = Instant.now();
         boolean isRequestDispatcher = DispatcherType.REQUEST.name()
                 .equals(request.getDispatcherType().name());
 
@@ -64,7 +62,6 @@ public class ApiInterceptor implements HandlerInterceptor {
             ThreadContext.put(LogKeysEnum.ERROR_CODE.getKey(), errorCode);
             ThreadContext.put(LogKeysEnum.REQUEST_PARAMS.getKey(), requestParams);
             ThreadContext.put(LogKeysEnum.API_VERSION.getKey(), apiVersion);
-            ThreadContext.put(LogKeysEnum.LATENCY.getKey(), String.valueOf(Duration.between(now, Instant.now()).toMillis()));
             log.info(DEFAULT_RESPONSE_LOG_MSG);
         }
     }

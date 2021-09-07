@@ -1,10 +1,10 @@
 package com.marvelchallenge.presenter.rest.characters.impl;
 
-import com.marvelchallenge.CharacterAdapter;
-import com.marvelchallenge.presenter.rest.characters.CharacterDTO;
+import com.marvelchallenge.adapter.CharacterAdapter;
+import com.marvelchallenge.presenter.rest.characters.dtos.CharacterDTO;
 import com.marvelchallenge.presenter.rest.characters.CharactersController;
-import com.marvelchallenge.usecase.GetCharacterById;
-import com.marvelchallenge.usecase.GetCharactersIds;
+import com.marvelchallenge.usecase.character.GetCharacterById;
+import com.marvelchallenge.usecase.character.GetCharactersIds;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,9 +27,9 @@ public class CharactersControllerImpl implements CharactersController {
     }
 
     @GetMapping("/{id}")
-    public CharacterDTO getById(Integer id) {
+    public CharacterDTO getById(Integer id, String lang) {
 
-        return CharacterAdapter.convert(getCharacterById.execute(id));
+        return CharacterAdapter.convert(getCharacterById.execute(id, lang));
     }
 
 }

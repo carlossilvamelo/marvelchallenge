@@ -5,8 +5,7 @@ import org.springframework.http.HttpStatus;
 
 public class ResourceNotFoundException extends StandarRuntimeException {
 
-    private static final long serialVersionUID = -3475370540432322043L;
-    private static final String MSG = "Recurso não existente.";
+    private static final String MSG = "Resource not found";
     private static final HttpStatus STATUS = HttpStatus.NOT_FOUND;
 
     public ResourceNotFoundException(String msg) {

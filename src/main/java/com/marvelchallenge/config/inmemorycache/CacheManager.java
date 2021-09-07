@@ -1,4 +1,4 @@
-package com.marvelchallenge.inmemorycache;
+package com.marvelchallenge.config.inmemorycache;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
@@ -13,9 +13,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableScheduling
 public class CacheManager {
 
-
     @Async
-    @Scheduled(fixedDelay = 30000, initialDelay = 30000) // 30s
+    @Scheduled(fixedDelay = 30000) // 30s
     public void clear() {
         GetCharactersIdsCache.getInstance().clear();
     }

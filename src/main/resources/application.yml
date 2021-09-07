@@ -9,10 +9,16 @@ spring:
     name: marvel-api
 marvel-api:
   base-url: https://gateway.marvel.com:443/v1/public
+translation-api:
+  base-url: https://api.cognitive.microsofttranslator.com
 
 api-keys:
   public: ${PUBLIC_KEY}
   private: ${PRIVATE_KEY}
+
+translation-api-auth:
+  key: ${TRANSLATION_API_KEY}
+  region: ${TRANSLATION_API_REGION}
 
 openapi:
   title: Marvel API
