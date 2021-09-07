@@ -28,7 +28,7 @@ public class CacheAspect {
 
         if ((target instanceof GetCharactersIdsImpl)
                 && getCharactersIdsCache.isCached()) {
-            log.debug("getCharactersIds cache response");
+            log.info("getCharactersIds cache response");
             return getCharactersIdsCache.getCache();
         }
 

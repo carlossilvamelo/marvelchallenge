@@ -12,12 +12,11 @@ import org.springframework.scheduling.annotation.Scheduled;
 @Configuration
 @EnableScheduling
 public class CacheManager {
-    public static final Integer TTL = 3;
+
 
     @Async
     @Scheduled(fixedDelay = 30000, initialDelay = 30000) // 30s
     public void clear() {
-        GetCharacterByIdCache.getInstance().clear();
         GetCharactersIdsCache.getInstance().clear();
     }
 }

@@ -1,12 +1,6 @@
-api:
-  version: @project.version@
-server:
-  port: 8081
-  servlet:
-    contextPath: /marvel
 spring:
   application:
-    name: marvel-api
+    name: marvel-api-gateway
 marvel-api:
   base-url: https://gateway.marvel.com:443/v1/public
 
@@ -15,9 +9,9 @@ api-keys:
   private: ${PRIVATE_KEY}
 
 openapi:
-  title: Marvel API
+  title: Marvel API Gateway
   version: @project.version@
-  description: Marvel API
+  description: Marvel API Gateway
 messages:
   global: 'classpath:/messages/global'
 

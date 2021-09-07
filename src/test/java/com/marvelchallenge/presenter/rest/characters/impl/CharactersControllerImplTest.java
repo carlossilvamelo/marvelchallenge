@@ -6,6 +6,7 @@ import com.marvelchallenge.gateway.characters.CharactersGateway;
 import com.marvelchallenge.gateway.characters.CharactersGatewayImpl;
 import com.marvelchallenge.gateway.dto.MarvelApiResponse;
 import com.marvelchallenge.models.Character;
+import com.marvelchallenge.presenter.rest.characters.CharacterDTO;
 import com.marvelchallenge.usecase.GetCharacterById;
 import com.marvelchallenge.usecase.GetCharactersIds;
 import com.marvelchallenge.usecase.impl.GetCharacterByIdImpl;
@@ -87,7 +88,7 @@ class CharactersControllerImplTest {
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        Character response = MockLoaderUtils.stringToObject(responseString
+        CharacterDTO response = MockLoaderUtils.stringToObject(responseString
                 , new TypeReference<>() {
                 });
         assertNotNull(response);

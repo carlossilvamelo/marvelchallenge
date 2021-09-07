@@ -1,6 +1,7 @@
 package com.marvelchallenge.presenter.rest.characters.impl;
 
-import com.marvelchallenge.models.Character;
+import com.marvelchallenge.CharacterAdapter;
+import com.marvelchallenge.presenter.rest.characters.CharacterDTO;
 import com.marvelchallenge.presenter.rest.characters.CharactersController;
 import com.marvelchallenge.usecase.GetCharacterById;
 import com.marvelchallenge.usecase.GetCharactersIds;
@@ -26,9 +27,9 @@ public class CharactersControllerImpl implements CharactersController {
     }
 
     @GetMapping("/{id}")
-    public Character getById(Integer id) {
+    public CharacterDTO getById(Integer id) {
 
-        return getCharacterById.execute(id);
+        return CharacterAdapter.convert(getCharacterById.execute(id));
     }
 
 }

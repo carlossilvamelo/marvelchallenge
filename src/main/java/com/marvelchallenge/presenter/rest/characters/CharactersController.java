@@ -1,6 +1,6 @@
 package com.marvelchallenge.presenter.rest.characters;
 
-import com.marvelchallenge.models.Character;
+import com.marvelchallenge.config.SwaggerApiInfo;
 import io.swagger.annotations.Api;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,73 +16,49 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 
 @Api(tags = "Characters")
-public interface CharactersController {
-    @Operation(summary = "Consulta lista de projetos",
-            tags = "Projects",
-            description = "descri",
-            responses = @ApiResponse(responseCode = "200", description = "Sucesso"
+public interface CharactersController extends SwaggerApiInfo {
+    @Operation(summary = "Get all characters IDS",
+            tags = "Characters",
+            responses = @ApiResponse(responseCode = "200", description = "Success"
                     , content = @Content(
                     array = @ArraySchema(
                             schema = @Schema(
-                                    implementation = Integer.class
+                                    implementation = Integer[].class
                             )
                     ),
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                     examples = {
                             @ExampleObject(
                                     name = "Exemplo",
-                                    value = "{\"content\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Nome do projeto\",\"stages\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Superestrutura\",\"results\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Estrutura de concreto\",\"elements\":[],\"criteria\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Bitola\",\"value\":\"4.2\"}]}]}]}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true,\"empty\":true},\"offset\":0,\"pageNumber\":0,\"pageSize\":1,\"paged\":true,\"unpaged\":false},\"last\":true,\"totalPages\":1,\"totalElements\":1,\"sort\":{\"sorted\":false,\"unsorted\":true,\"empty\":true},\"first\":true,\"size\":1,\"number\":0,\"numberOfElements\":1,\"empty\":false}\n"
+                                    value = "[1011334,1017100,1009144,1010699,1009146,1016823,1009148,1009149]"
                             ),
                     }
-            )),
-            parameters = {
-                    @Parameter(name = "name",
-                            description = "Buscar proojeto por nome",
-                            in = ParameterIn.QUERY),
-                    @Parameter(name = "page",
-                            description = "Número da página: Inicia pela pagina ZERO",
-                            in = ParameterIn.QUERY),
-                    @Parameter(name = "size",
-                            description = "Quantidade de registros por página",
-                            in = ParameterIn.QUERY),
-                    @Parameter(name = "sort",
-                            description = "Ordenação por parametro: sort=name,asc.",
-                            in = ParameterIn.QUERY),
-            })
+            )))
     List<Integer> getIds();
 
-    @Operation(summary = "Consulta lista de projetos",
-            tags = "Projects",
-            description = "descri",
-            responses = @ApiResponse(responseCode = "200", description = "Sucesso"
+    @Operation(summary = "Get character by ID",
+            tags = "Characters",
+            responses = @ApiResponse(responseCode = "200", description = "Success"
                     , content = @Content(
                     array = @ArraySchema(
                             schema = @Schema(
-                                    implementation = Integer.class
+                                    implementation = CharacterDTO.class
                             )
                     ),
                     mediaType = MediaType.APPLICATION_JSON_VALUE,
                     examples = {
                             @ExampleObject(
                                     name = "Exemplo",
-                                    value = "{\"content\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Nome do projeto\",\"stages\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Superestrutura\",\"results\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Estrutura de concreto\",\"elements\":[],\"criteria\":[{\"id\":\"507f191e810c19729de860ea\",\"name\":\"Bitola\",\"value\":\"4.2\"}]}]}]}],\"pageable\":{\"sort\":{\"sorted\":false,\"unsorted\":true,\"empty\":true},\"offset\":0,\"pageNumber\":0,\"pageSize\":1,\"paged\":true,\"unpaged\":false},\"last\":true,\"totalPages\":1,\"totalElements\":1,\"sort\":{\"sorted\":false,\"unsorted\":true,\"empty\":true},\"first\":true,\"size\":1,\"number\":0,\"numberOfElements\":1,\"empty\":false}\n"
+                                    value = "{\"id\":1010699,\"name\":\"Aaron Stack\",\"modified\":\"1969-12-31T19:00:00-0500\",\"thumbnail\":{\"path\":\"http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available\",\"extension\":\"jpg\"}}"
                             ),
                     }
             )),
             parameters = {
-                    @Parameter(name = "name",
-                            description = "Buscar proojeto por nome",
-                            in = ParameterIn.QUERY),
-                    @Parameter(name = "page",
-                            description = "Número da página: Inicia pela pagina ZERO",
-                            in = ParameterIn.QUERY),
-                    @Parameter(name = "size",
-                            description = "Quantidade de registros por página",
-                            in = ParameterIn.QUERY),
-                    @Parameter(name = "sort",
-                            description = "Ordenação por parametro: sort=name,asc.",
+                    @Parameter(name = "language",
+                            example = "en",
+                            description = "Language to translate",
                             in = ParameterIn.QUERY),
             })
-    Character getById(@PathVariable("id") Integer id);
+    CharacterDTO getById(@PathVariable("id") Integer id);
 
 }

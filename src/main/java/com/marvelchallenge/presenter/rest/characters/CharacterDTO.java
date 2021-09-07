@@ -1,24 +1,18 @@
-package com.marvelchallenge.models;
+package com.marvelchallenge.presenter.rest.characters;
 
+import com.marvelchallenge.models.Thumbnail;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
-public class Character {
+public class CharacterDTO {
     private Integer id;
     private String name;
     private String description;
     private Thumbnail thumbnail;
-    private Comics comics;
-    private Series series;
-    private Stories stories;
-    private Events events;
-    private List<Url> urls;
 }
