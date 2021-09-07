@@ -22,6 +22,10 @@
                 level="INFO" additivity="false">
             <appender-ref ref="RequestLoggerAppender"/>
         </logger>
+        <logger name="com.marvelchallenge.config.CacheAspectInterceptor"
+                level="DEBUG" additivity="false">
+            <appender-ref ref="ServiceLoggerAppender"/>
+        </logger>
 
         <logger name="com.marvelchallenge.usecase"
                 level="DEBUG" additivity="false">

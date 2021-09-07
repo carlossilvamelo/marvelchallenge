@@ -1,7 +1,7 @@
-package com.marvelchallenge.gateway.translation.impl;
+package com.marvelchallenge.gateway.translation.client;
 
-import com.marvelchallenge.gateway.translation.dtos.TranslationRequestDTO;
-import com.marvelchallenge.gateway.translation.dtos.TranslationResponseDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationRequestDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

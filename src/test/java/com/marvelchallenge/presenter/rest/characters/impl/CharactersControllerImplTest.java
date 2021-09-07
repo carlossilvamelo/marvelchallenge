@@ -1,15 +1,15 @@
 package com.marvelchallenge.presenter.rest.characters.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.marvelchallenge.gateway.characters.CharactersClient;
-import com.marvelchallenge.gateway.characters.CharactersGatewayImpl;
-import com.marvelchallenge.gateway.dto.MarvelApiResponse;
+import com.marvelchallenge.gateway.characters.client.CharactersClient;
+import com.marvelchallenge.gateway.characters.impl.CharactersGatewayImpl;
+import com.marvelchallenge.gateway.characters.dto.MarvelApiResponseDTO;
 import com.marvelchallenge.gateway.translation.TranslationGateway;
-import com.marvelchallenge.gateway.translation.dtos.TranslationResponseDTO;
-import com.marvelchallenge.gateway.translation.impl.TranslationClient;
+import com.marvelchallenge.gateway.translation.dto.TranslationResponseDTO;
+import com.marvelchallenge.gateway.translation.client.TranslationClient;
 import com.marvelchallenge.gateway.translation.impl.TranslationGatewayImpl;
 import com.marvelchallenge.models.Character;
-import com.marvelchallenge.presenter.rest.characters.dtos.CharacterDTO;
+import com.marvelchallenge.presenter.rest.characters.dto.CharacterDTO;
 import com.marvelchallenge.usecase.character.GetCharacterById;
 import com.marvelchallenge.usecase.character.GetCharactersIds;
 import com.marvelchallenge.usecase.character.impl.GetCharacterByIdImpl;
@@ -45,7 +45,7 @@ class CharactersControllerImplTest {
         @Bean
         public GetCharactersIds getCharactersIds() {
             CharactersClient charactersClient = mock(CharactersClient.class);
-            MarvelApiResponse<Character> mock = MockLoaderUtils
+            MarvelApiResponseDTO<Character> mock = MockLoaderUtils
                     .getMockTypeReference("character-list.json"
                     , new TypeReference<>() {
                     });
@@ -57,7 +57,7 @@ class CharactersControllerImplTest {
         @Bean
         public GetCharacterById getCharacterById() {
             CharactersClient charactersClient = mock(CharactersClient.class);
-            MarvelApiResponse<Character> mock = MockLoaderUtils
+            MarvelApiResponseDTO<Character> mock = MockLoaderUtils
                     .getMockTypeReference("character-1010699.json"
                     , new TypeReference<>() {
                     });

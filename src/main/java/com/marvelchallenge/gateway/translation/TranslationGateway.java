@@ -1,7 +1,7 @@
 package com.marvelchallenge.gateway.translation;
 
-import com.marvelchallenge.gateway.translation.dtos.TranslationRequestDTO;
-import com.marvelchallenge.gateway.translation.dtos.TranslationResponseDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationRequestDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationResponseDTO;
 
 import java.util.List;
 

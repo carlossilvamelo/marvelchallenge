@@ -1,17 +1,31 @@
+api:
+  version: @project.version@
+server:
+  port: 8081
+  servlet:
+    contextPath: /marvel
 spring:
   application:
-    name: marvel-api-gateway
+    name: marvel-api
 marvel-api:
   base-url: https://gateway.marvel.com:443/v1/public
+translation-api:
+  base-url: https://api.cognitive.microsofttranslator.com
 
 api-keys:
   public: ${PUBLIC_KEY}
   private: ${PRIVATE_KEY}
 
+translation-api-auth:
+  key: ${TRANSLATION_API_KEY}
+  region: ${TRANSLATION_API_REGION}
+
 openapi:
   title: Marvel API Gateway
   version: @project.version@
   description: Marvel API Gateway
+
+
 messages:
   global: 'classpath:/messages/global'
 

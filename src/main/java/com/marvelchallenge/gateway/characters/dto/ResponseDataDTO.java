@@ -1,4 +1,4 @@
-package com.marvelchallenge.gateway.dto;
+package com.marvelchallenge.gateway.characters.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class ResponseData<T> {
+public class ResponseDataDTO<T> {
     private Integer offset;
     private Integer limit;
     private Integer total;

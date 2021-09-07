@@ -2,9 +2,8 @@ package com.marvelchallenge.exception;
 
 public enum ExceptionCodes {
 
-	DATA_LAYER_ERROR,
+	HTTP_CLIENT_ERROR,
 	RESOURCE_NOT_FOUND,
-	BUSINESS_ERROR,
-	MANDATORY_FIELDS
+	BUSINESS_ERROR
 	
 }

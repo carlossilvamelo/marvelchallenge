@@ -2,8 +2,8 @@ package com.marvelchallenge.usecase.character.impl;
 
 import com.marvelchallenge.exception.ResourceNotFoundException;
 import com.marvelchallenge.gateway.characters.CharactersGateway;
-import com.marvelchallenge.gateway.dto.MarvelApiResponse;
-import com.marvelchallenge.gateway.dto.ResponseData;
+import com.marvelchallenge.gateway.characters.dto.MarvelApiResponseDTO;
+import com.marvelchallenge.gateway.characters.dto.ResponseDataDTO;
 import com.marvelchallenge.models.AuthInfo;
 import com.marvelchallenge.models.Character;
 import com.marvelchallenge.usecase.auth.GetAuthInfo;
@@ -11,7 +11,6 @@ import com.marvelchallenge.usecase.character.GetCharacterById;
 import com.marvelchallenge.usecase.translation.GetTranslations;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -21,25 +20,26 @@ public class GetCharacterByIdImpl extends GetAuthInfo implements GetCharacterByI
 
     private final CharactersGateway charactersGateway;
     private final GetTranslations getTranslations;
+
     @Override
     public Character execute(Integer id, String lang) {
 
         AuthInfo authInfo = getAuthInfo();
 
-        MarvelApiResponse<Character> respose = charactersGateway.getById(id
+        MarvelApiResponseDTO<Character> characterDtoList = charactersGateway.getById(id
                 , authInfo.getTimestamp()
                 , publicKey
                 , authInfo.getHash());
-        Character character = validateAndGetExistent(respose);
+        Character character = getIfExists(characterDtoList);
         getTranslations.execute(character, lang);
         return character;
 
     }
 
-    private Character validateAndGetExistent(MarvelApiResponse<Character> respose) {
-        respose = Optional.ofNullable(respose)
+    private Character getIfExists(MarvelApiResponseDTO<Character> characterDtoList) {
+        characterDtoList = Optional.ofNullable(characterDtoList)
                 .orElseThrow(ResourceNotFoundException::new);
-        ResponseData<Character> data = Optional.ofNullable(respose.getData())
+        ResponseDataDTO<Character> data = Optional.ofNullable(characterDtoList.getData())
                 .orElseThrow(ResourceNotFoundException::new);
         List<Character> results = data.getResults();
         return results.stream()

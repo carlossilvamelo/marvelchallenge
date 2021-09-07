@@ -1,7 +1,7 @@
-package com.marvelchallenge.gateway.characters;
+package com.marvelchallenge.gateway.characters.client;
 
 
-import com.marvelchallenge.gateway.dto.MarvelApiResponse;
+import com.marvelchallenge.gateway.characters.dto.MarvelApiResponseDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +13,16 @@ import com.marvelchallenge.models.Character;
 public interface CharactersClient {
 
     @GetMapping(path = "/characters", produces = MediaType.APPLICATION_JSON_VALUE)
-    MarvelApiResponse<Character> getAll(
+    MarvelApiResponseDTO<Character> getAll(
             @RequestParam(value = "ts") String ts,
             @RequestParam(value = "apikey") String publicKey,
             @RequestParam(value = "hash") String hash
     );
-
     @GetMapping(path = "/characters/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    MarvelApiResponse<Character> getById(
+    MarvelApiResponseDTO<Character> getById(
             @PathVariable("id") Integer id,
             @RequestParam(value = "ts") String ts,
             @RequestParam(value = "apikey") String publicKey,
             @RequestParam(value = "hash") String hash
     );
-
-
 }

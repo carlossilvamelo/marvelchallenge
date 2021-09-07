@@ -1,8 +1,9 @@
 package com.marvelchallenge.gateway.translation.impl;
 
 import com.marvelchallenge.gateway.translation.TranslationGateway;
-import com.marvelchallenge.gateway.translation.dtos.TranslationRequestDTO;
-import com.marvelchallenge.gateway.translation.dtos.TranslationResponseDTO;
+import com.marvelchallenge.gateway.translation.client.TranslationClient;
+import com.marvelchallenge.gateway.translation.dto.TranslationRequestDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,4 +1,4 @@
-package com.marvelchallenge.config;
+package com.marvelchallenge.config.enumerators;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

@@ -1,4 +1,4 @@
-package com.marvelchallenge.gateway.translation.dtos;
+package com.marvelchallenge.gateway.translation.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;

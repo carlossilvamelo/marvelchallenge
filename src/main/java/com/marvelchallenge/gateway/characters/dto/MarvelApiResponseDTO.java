@@ -1,4 +1,4 @@
-package com.marvelchallenge.gateway.dto;
+package com.marvelchallenge.gateway.characters.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,12 +9,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Builder
-public class MarvelApiResponse<T> {
+public class MarvelApiResponseDTO<T> {
     private Integer code;
     private String status;
     private String copyright;
     private String attributionText;
     private String attributionHTML;
     private String etag;
-    private ResponseData<T> data;
+    private ResponseDataDTO<T> data;
 }

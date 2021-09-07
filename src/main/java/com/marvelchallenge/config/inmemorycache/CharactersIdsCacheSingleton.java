@@ -6,19 +6,19 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 
-public class GetCharactersIdsCache {
+public class CharactersIdsCacheSingleton {
 
     private static final Integer TTL = 3;
-    private static GetCharactersIdsCache instance = null;
+    private static CharactersIdsCacheSingleton instance = null;
     private List<Integer> cache;
     private Instant startedAt;
 
-    private GetCharactersIdsCache() {
+    private CharactersIdsCacheSingleton() {
     }
 
-    public static GetCharactersIdsCache getInstance() {
+    public static CharactersIdsCacheSingleton getInstance() {
         if (ObjectUtils.allNull(instance)) {
-            instance = new GetCharactersIdsCache();
+            instance = new CharactersIdsCacheSingleton();
         }
         return instance;
     }

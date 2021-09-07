@@ -2,8 +2,9 @@ package com.marvelchallenge.usecase.translation.impl;
 
 import com.marvelchallenge.exception.BusinessRuleException;
 import com.marvelchallenge.gateway.translation.TranslationGateway;
-import com.marvelchallenge.gateway.translation.dtos.TranslationRequestDTO;
-import com.marvelchallenge.gateway.translation.dtos.TranslationResponseDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationDataResponseDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationRequestDTO;
+import com.marvelchallenge.gateway.translation.dto.TranslationResponseDTO;
 import com.marvelchallenge.models.Character;
 import com.marvelchallenge.usecase.translation.GetTranslations;
 import feign.FeignException;
@@ -12,7 +13,9 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,24 +32,34 @@ public class GetTranslationsImpl implements GetTranslations {
     @Override
     public void execute(Character character, String to) {
         if (!"en".equals(to) && ObjectUtils.allNotNull(key, region)) {
-            final Integer NAME = 0;
-            final Integer DESCRIPTION = 1;
+
             var request = mountRequest(character);
             try {
-                List<TranslationResponseDTO> response = translationGateway
+                List<TranslationResponseDTO> translated = translationGateway
                         .getTranslations(request, to, key, region);
-                character.setName(response.get(NAME).getTranslations().get(0).getText());
-                character.setDescription(response.get(DESCRIPTION).getTranslations().get(0).getText());
+                character.setDescription(getText(translated, character.getDescription()));
             } catch (FeignException exception) {
                 throw new BusinessRuleException(String
                         .format("Error when trying to translate by code language ´%s´", to));
             }
         }
     }
+    private String getText(List<TranslationResponseDTO> response, String initialText){
+        response = Optional.ofNullable(response).orElse(new ArrayList<>());
+
+        return response
+                .stream()
+                .map(item -> {
+                    TranslationDataResponseDTO translated = item.getTranslations()
+                            .stream()
+                            .findFirst()
+                            .orElse(TranslationDataResponseDTO.builder().text(initialText).build());
+                    return translated.getText();
+                }).findFirst().orElse(initialText);
+    }
 
     private List<TranslationRequestDTO> mountRequest(Character character) {
-        List<String> texts = List.of(character.getName()
-                , character.getDescription());
+        List<String> texts = List.of(character.getDescription());
         return texts.stream()
                 .map(text -> TranslationRequestDTO.builder()
                         .text(text)

@@ -21,8 +21,7 @@ translation-api-auth:
   region: ${TRANSLATION_API_REGION}
 
 openapi:
-  title: Marvel API
+  title: Marvel API Gateway
   version: @project.version@
-  description: Marvel API
-messages:
-  global: 'classpath:/messages/global'
+  description: Marvel API Gateway
+

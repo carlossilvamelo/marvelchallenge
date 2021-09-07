@@ -1,4 +1,4 @@
-package com.marvelchallenge.presenter.rest.characters.dtos;
+package com.marvelchallenge.presenter.rest.characters.dto;
 
 import com.marvelchallenge.models.Thumbnail;
 import lombok.AllArgsConstructor;

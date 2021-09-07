@@ -1,14 +1,13 @@
 package com.marvelchallenge.usecase.character.impl;
 
 import com.marvelchallenge.gateway.characters.CharactersGateway;
-import com.marvelchallenge.gateway.dto.MarvelApiResponse;
+import com.marvelchallenge.gateway.characters.dto.MarvelApiResponseDTO;
 import com.marvelchallenge.models.AuthInfo;
 import com.marvelchallenge.models.Character;
 import com.marvelchallenge.usecase.auth.GetAuthInfo;
 import com.marvelchallenge.usecase.character.GetCharactersIds;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,14 +21,14 @@ public class GetCharactersIdsImpl extends GetAuthInfo implements GetCharactersId
     public List<Integer> execute() {
         AuthInfo authInfo = getAuthInfo();
 
-        MarvelApiResponse<Character> respose = charactersGateway
+        MarvelApiResponseDTO<Character> characterList = charactersGateway
                 .getAll(authInfo.getTimestamp()
                         , publicKey
                         , authInfo.getHash());
 
-        List<Character> characterDtos = respose.getData().getResults();
+        List<Character> characterDtoList = characterList.getData().getResults();
 
-        return characterDtos.stream()
+        return characterDtoList.stream()
                 .map(Character::getId)
                 .collect(Collectors.toList());
     }

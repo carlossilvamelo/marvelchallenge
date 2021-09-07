@@ -1,7 +1,8 @@
 package com.marvelchallenge.config;
 
-import com.marvelchallenge.config.inmemorycache.GetCharactersIdsCache;
+import com.marvelchallenge.config.inmemorycache.CharactersIdsCacheSingleton;
 import com.marvelchallenge.usecase.character.impl.GetCharactersIdsImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Slf4j
 @Aspect
 @Component
 public class CacheAspectInterceptor {
@@ -18,17 +20,14 @@ public class CacheAspectInterceptor {
     @Around("execution(* com.marvelchallenge.usecase..*.*(..))")
     public Object cache(ProceedingJoinPoint joinPoint) throws Throwable {
 
-        GetCharactersIdsCache getCharactersIdsCache = GetCharactersIdsCache
+        CharactersIdsCacheSingleton getCharactersIdsCache = CharactersIdsCacheSingleton
                 .getInstance();
 
-        var methodSignature = (MethodSignature) joinPoint.getSignature();
         Object target = joinPoint.getTarget();
-        var log = LoggerFactory.getLogger(methodSignature.getDeclaringTypeName());
-
 
         if ((target instanceof GetCharactersIdsImpl)
                 && getCharactersIdsCache.isCached()) {
-            log.info("getCharactersIds cache response");
+            log.debug("getCharactersIds cache response");
             return getCharactersIdsCache.getCache();
         }
 
@@ -36,7 +35,7 @@ public class CacheAspectInterceptor {
 
         if ((target instanceof GetCharactersIdsImpl)
                 && !getCharactersIdsCache.isCached()) {
-            log.info("Character cached");
+            log.debug("Character cached");
             getCharactersIdsCache.setCache((List<Integer>) result);
         }
         return result;
