@@ -39,7 +39,7 @@ public class GetTranslationsImpl implements GetTranslations {
                 character.setDescription(response.get(DESCRIPTION).getTranslations().get(0).getText());
             } catch (FeignException exception) {
                 throw new BusinessRuleException(String
-                        .format("Error when trying to translate by code language %s", to));
+                        .format("Error when trying to translate by code language ´%s´", to));
             }
         }
     }
