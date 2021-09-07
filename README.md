@@ -15,4 +15,8 @@
 * PUBLIC_KEY=${YOUR PUBLIC KEY}
 * PUBLIC_KEY=${YOUR PRIVATE KEY}
 
+## Deployed application
+[marvel-api-gateway](https://marvel-api-gateway.herokuapp.com/marvel/swagger-ui/index.html)
+
+
 
