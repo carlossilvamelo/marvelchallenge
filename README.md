@@ -12,8 +12,8 @@
 * start application as you want
 
 ## Environment variable for Marvel API
-* PUBLIC_KEY=${YOUR PUBLIC KEY}
-* PUBLIC_KEY=${YOUR PRIVATE KEY}
+* PUBLIC_KEY=${YOUR "Characters API" PUBLIC KEY}
+* PUBLIC_KEY=${YOUR "Characters API" PRIVATE KEY}
 
 ## Deployed application
 [marvel-api-gateway](https://marvel-api-gateway.herokuapp.com/marvel/swagger-ui.html)
