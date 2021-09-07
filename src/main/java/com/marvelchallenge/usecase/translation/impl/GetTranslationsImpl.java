@@ -1,10 +1,12 @@
 package com.marvelchallenge.usecase.translation.impl;
 
+import com.marvelchallenge.exception.BusinessRuleException;
 import com.marvelchallenge.gateway.translation.TranslationGateway;
 import com.marvelchallenge.gateway.translation.dtos.TranslationRequestDTO;
 import com.marvelchallenge.gateway.translation.dtos.TranslationResponseDTO;
 import com.marvelchallenge.models.Character;
 import com.marvelchallenge.usecase.translation.GetTranslations;
+import feign.FeignException;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -30,10 +32,15 @@ public class GetTranslationsImpl implements GetTranslations {
             final Integer NAME = 0;
             final Integer DESCRIPTION = 1;
             var request = mountRequest(character);
-            List<TranslationResponseDTO> response = translationGateway
-                    .getTranslations(request, to, key, region);
-            character.setName(response.get(NAME).getTranslations().get(0).getText());
-            character.setDescription(response.get(DESCRIPTION).getTranslations().get(0).getText());
+            try {
+                List<TranslationResponseDTO> response = translationGateway
+                        .getTranslations(request, to, key, region);
+                character.setName(response.get(NAME).getTranslations().get(0).getText());
+                character.setDescription(response.get(DESCRIPTION).getTranslations().get(0).getText());
+            } catch (FeignException exception) {
+                throw new BusinessRuleException(String
+                        .format("Error when trying to translate by code language %s", to));
+            }
         }
     }
 
