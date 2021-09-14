@@ -20,5 +20,9 @@
 ## Deployed application (Try it out)
 [marvel-api-gateway](https://marvel-api-gateway.herokuapp.com/marvel/swagger-ui.html)
 
+## Solution Architecture overview
+
+![ld](components.png)
+
 
 
